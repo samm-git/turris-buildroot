@@ -13,7 +13,7 @@ WORKDIR /opt/turris
 RUN passwd -d root
 USER builder
 # create OpenWRT buildroot in /opt/turris/openwrt
-RUN git clone https://gitlab.labs.nic.cz/turris/openwrt.git
+RUN git clone https://gitlab.labs.nic.cz/turris/openwrt.git && cd openwrt && git submodule init && git submodule update
 WORKDIR /opt/turris/openwrt
 # update all feeds
 RUN scripts/feeds update -a
