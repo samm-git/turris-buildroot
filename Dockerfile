@@ -15,5 +15,3 @@ USER builder
 # create OpenWRT buildroot in /opt/turris/openwrt
 RUN git clone https://gitlab.labs.nic.cz/turris/openwrt.git
 WORKDIR /opt/turris/openwrt
-# use stable branch. no idea what is used to generate Turris OS releases
-RUN git checkout -b stable remotes/origin/stable
