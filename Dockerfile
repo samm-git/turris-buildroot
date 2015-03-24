@@ -4,7 +4,7 @@ FROM debian:latest
 MAINTAINER Alex Samorukov
 # install packages needed to build OS and packages
 RUN apt-get update
-RUN apt-get install -y gawk unzip ncurses-dev git-core build-essential libssl-dev  subversion mercurial wget gettext
+RUN apt-get install -y gawk unzip ncurses-dev git-core build-essential libssl-dev subversion mercurial wget gettext procps
 # add builder uid/gid
 RUN useradd --home /opt/turris builder
 RUN mkdir /opt/turris && chown builder:builder /opt/turris

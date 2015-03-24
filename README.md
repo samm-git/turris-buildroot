@@ -1,2 +1,2 @@
-# docker-turris-buildroot
-Dockerfile for the docker container
+# Dockerfile for the turris OpenWRT buildroot
+Goal of this project is to provide buildroot environment for the Turris project.
