@@ -34,11 +34,11 @@ Image is based on debian wheezy. All packages required to rebuild turris firmwar
         #
         make -j18 LOGFILE=1 BUILD_LOG=1 IS_TTY=1
         <output skipped>
-This should build GCC/uClibc toolchain, build tools, kernel and some packages.
+This should build GCC/uClibc toolchain, build tools, kernel and some packages. On a 16 Cores VM it takes about 15 minutes. 
 5. To build entire firmware (please note, it will take a lot of time), use command like that:
 
         USE_CCACHE=y BUILD_ALL=y ./compile_turris_fw -j8 LOGFILE=1 BUILD_LOG=1 IS_TTY=1
 Most likely this step will fail, because during build process it will try to fetch many files from remote locations, and not all of them were available during my tests. I was looking for such files on the mirrors and downloaded them to `dl/` folder directly.After `dl/` is filled you can run `make package/compile -j8` to continue. Also parallel build is not always working very well with openwrt.
 ## troubleshooting
-As i mentioned before - openwrt build system is not very stable. I am recommending to grep ' Error' in the build.log in case of fail to find exact reason and failed package. Usually it is enough to put unavialable distfile to the `dl/` directory. Also you will find that some packages are very outdated - this is because Turris OS overrides default openwrt packages for some reason. 
+As i mentioned before - openwrt build system is not very stable. I am recommending to grep ' Error' in the build.log in case of fail to find exact reason and failed package. Sometime it is enough to run build one more time. Often it is enough to put unavialable distfile to the `dl/` directory. Also you will find that some packages are very outdated - this is because Turris OS overrides default openwrt packages for some reason. 
 In case of any comments or suggestions - pull requests are welcome :)
