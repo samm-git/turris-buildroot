@@ -1,13 +1,13 @@
 # Dockerfile for the turris OpenWRT buildroot
 ## about
-Goal of this project is to provide OpenWRT buildroot for the turris router. I decided to use docker for a number of reasons:
+Goal of this project is to provide OpenWRT buildroot for the [turris router](https://www.turris.cz/). I decided to use docker for a number of reasons:
 - Its giving ability to create repeatable builds undepended from host environment
 - It is possible to use it directly on Linux and also on OSX/Windows using boot2docker project
 - Ability to automate build process, make snapshots, etc.
 - Possibility to host image on docker hub and deploy it on any server (e.g. in cloud environment or locally). 
 
 ## how it works
-Image is based on debian wheezy. All packages required to rebuild turris firmware are installed. OpenWRT + all feeds are fetched from the CZNIC server and ready to use. Build of this image is completely automated using Docker Hub. 
+Image is based on debian wheezy. All packages required to rebuild turris firmware are installed. OpenWRT + all feeds are fetched from the CZNIC server and ready to use. tBuild of this image is completely automated using Docker Hub. 
 
 ## how to use it
 1. You should have [docker](http://www.docker.com) installed and configured.
