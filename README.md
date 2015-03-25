@@ -39,7 +39,23 @@ This should build GCC/uClibc toolchain, build tools, kernel and some packages. O
 
         USE_CCACHE=y BUILD_ALL=y ./compile_turris_fw -j8 LOGFILE=1 BUILD_LOG=1 IS_TTY=1
 Most likely this step will fail, because during build process it will try to fetch many files from remote locations, and not all of them were available during my tests. I was looking for such files on the mirrors and downloaded them to `dl/` folder manually. After `dl/` is populated you can run `make package/compile -j8` to continue. Also parallel build is not always working very well with openwrt.
+## building kernel modules matching Turris release version
+OpenWRT using `vermagic` number which contain hash of the kernel configuration, including all enabled modules. To build 
 
+```
+builder@188508e1863d:~/openwrt$ cp configs/config-turris-nand ./.config
+builder@188508e1863d:~/openwrt$ echo "CONFIG_ALL=y" >> .config
+builder@188508e1863d:~/openwrt$ make defconfig
+builder@188508e1863d:~/openwrt$ make -j 18 target/compile
+ make[1] target/compile
+ make[2] -C target/linux compile
+builder@fcac61323ebe:~/openwrt$ make -j 18 package/linux/compile
+ make[1] package/linux/compile
+ make[2] -C package/libs/toolchain compile
+ make[2] -C package/firmware/linux-firmware compile
+ make[2] -C package/kernel/linux compile
+```
+After compilation you should find all kernel packages with matching vermagic number in the `bin/mpc85xx/packages/` directory. 
 ## troubleshooting
 As i mentioned before - openwrt build system is not very stable. I am recommending to grep ' Error' in the `/opt/turris/openwrt/logs/build.log` in case of fail to find exact reason and failed package. Sometime it is enough to run build one more time. Often it is enough to put unavialable distfile to the `dl/` directory. Also you will find that some packages are very outdated - this is because Turris OS overrides default openwrt packages for some reason. Also use [OpenWRT article](http://wiki.openwrt.org/doc/howto/build).
 
