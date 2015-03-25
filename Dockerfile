@@ -10,9 +10,12 @@ RUN apt-get update
 # cvs/svn/wget - to fetch source code
 # procps required by MySQL package
 # zip - jamvm
+# also we will remove all locales and docs to save some space
 RUN apt-get install -y gawk unzip ncurses-dev git-core build-essential \
     libssl-dev subversion mercurial wget gettext procps libxml-parser-perl \
-    bzr cvs man openjdk-6-jdk zip
+    bzr cvs man openjdk-6-jdk zip && \
+    ls -d /usr/share/locale/* | grep -v '^/usr/share/locale/en_US$' | xargs rm -rf && \
+    rm -rf /usr/share/doc/*
 # add builder uid/gid
 RUN useradd --home /opt/turris builder
 RUN mkdir /opt/turris && chown builder:builder /opt/turris
@@ -23,5 +26,6 @@ USER builder
 # create OpenWRT buildroot in /opt/turris/openwrt
 RUN git clone https://gitlab.labs.nic.cz/turris/openwrt.git && cd openwrt && git submodule init && git submodule update
 WORKDIR /opt/turris/openwrt
-# update all feeds
-RUN scripts/feeds update -a
+# update all feeds and cleanup 
+RUN scripts/feeds update -a && rm -rf /opt/turris/openwrt/tmp
+
