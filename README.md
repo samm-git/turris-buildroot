@@ -34,7 +34,7 @@ Image is based on debian wheezy. All packages required to rebuild turris firmwar
         #
         make -j18 LOGFILE=1 BUILD_LOG=1 IS_TTY=1
         <output skipped>
-This should build GCC/uClibc toolchain, build tools, kernel and some packages. On a 16 Cores VM it takes about 15 minutes. 
+This should build GCC/uClibc toolchain, build tools, kernel and some packages. On a 16 Cores VM it takes about 25 minutes. 
 5. To build entire firmware (please note, it will take a lot of time), use command like that:
 
         USE_CCACHE=y BUILD_ALL=y ./compile_turris_fw -j8 LOGFILE=1 BUILD_LOG=1 IS_TTY=1
