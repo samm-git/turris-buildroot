@@ -47,14 +47,7 @@ OpenWRT using `vermagic` number which contain hash of the kernel configuration, 
 builder@188508e1863d:~/openwrt$ cp configs/config-turris-nand ./.config
 builder@188508e1863d:~/openwrt$ echo "CONFIG_ALL=y" >> .config
 builder@188508e1863d:~/openwrt$ make defconfig
-builder@188508e1863d:~/openwrt$ make -j 18 target/compile
- make[1] target/compile
- make[2] -C target/linux compile
-builder@fcac61323ebe:~/openwrt$ make -j 18 package/linux/compile
- make[1] package/linux/compile
- make[2] -C package/libs/toolchain compile
- make[2] -C package/firmware/linux-firmware compile
- make[2] -C package/kernel/linux compile
+builder@188508e1863d:~/openwrt$ make -j 18 toolchain/install target/compile  package/linux/compile
 ```
 After compilation you should find all kernel packages with matching vermagic number in the `bin/mpc85xx/packages/` directory. 
 
