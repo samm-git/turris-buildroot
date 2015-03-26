@@ -9,11 +9,11 @@ RUN apt-get update
 # openjdk-6-jdk needed for the classpath package
 # cvs/svn/wget - to fetch source code
 # procps required by MySQL package
-# zip - jamvm
+# zip - jamvm, cpio - appweb
 # also we will remove all locales and docs to save some space
 RUN apt-get install -y gawk unzip ncurses-dev git-core build-essential \
     libssl-dev subversion mercurial wget gettext procps libxml-parser-perl \
-    bzr cvs man openjdk-6-jdk zip && \
+    bzr cvs man openjdk-6-jdk zip cpio && \
     ls -d /usr/share/locale/* | grep -v '^/usr/share/locale/en_US$' | xargs rm -rf && \
     rm -rf /usr/share/doc/*
 # add builder uid/gid
