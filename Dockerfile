@@ -6,14 +6,14 @@ MAINTAINER Alex Samorukov
 RUN apt-get update
 # OpenWRT packages is a kind of dependency hell. You never know what it wants
 # until it is failing.
-# openjdk-6-jdk needed for the classpath package
+# openjdk-7-jdk needed for the classpath package
 # cvs/svn/wget - to fetch source code
 # procps required by MySQL package
 # zip - jamvm, cpio - appweb
 # also we will remove all locales and docs to save some space
 RUN apt-get install -y gawk unzip ncurses-dev git-core build-essential \
     libssl-dev subversion mercurial wget gettext procps libxml-parser-perl \
-    bzr cvs man openjdk-6-jdk zip cpio && \
+    bzr cvs man openjdk-7-jdk zip cpio && \
     ls -d /usr/share/locale/* | grep -v '^/usr/share/locale/en_US$' | xargs rm -rf && \
     rm -rf /usr/share/doc/*
 # add builder uid/gid
